@@ -13,22 +13,6 @@
     wood: { material: 3.8, labor: 3.4, label: 'Wood shake', lifespan: '20–30 yrs', tier: 'Mid-range' },
   };
 
-  /** City-level material & labor multipliers vs national baseline (2026 market rates) */
-  const CITIES = {
-    national: { label: 'National average', material: 1, labor: 1, permit: 275 },
-    texas: { label: 'Texas average', material: 0.94, labor: 0.88, permit: 219 },
-    dallas: { label: 'Dallas, TX', material: 0.93, labor: 0.86, permit: 210 },
-    phoenix: { label: 'Phoenix, AZ', material: 1.02, labor: 1.05, permit: 248 },
-    austin: { label: 'Austin, TX', material: 0.97, labor: 0.93, permit: 228 },
-    tampa: { label: 'Tampa, FL', material: 1.05, labor: 1.03, permit: 288 },
-    charlotte: { label: 'Charlotte, NC', material: 0.95, labor: 0.91, permit: 232 },
-    raleigh: { label: 'Raleigh, NC', material: 0.96, labor: 0.92, permit: 228 },
-    scottsdale: { label: 'Scottsdale, AZ', material: 1.1, labor: 1.14, permit: 268 },
-    houston: { label: 'Houston, TX', material: 0.91, labor: 0.84, permit: 218 },
-    orlando: { label: 'Orlando, FL', material: 1.03, labor: 1.01, permit: 278 },
-    'san-diego': { label: 'San Diego, CA', material: 1.24, labor: 1.28, permit: 395 },
-  };
-
   const SLOPE = { low: 0.92, moderate: 1, steep: 1.18, 'very-steep': 1.35 };
   const COMPLEXITY = { simple: 0.94, moderate: 1, complex: 1.14 };
   const STORIES = { '1': 1, '2': 1.07, '3': 1.14 };
@@ -48,25 +32,40 @@
     phoenix: 'Extreme heat drives cool-roof and tile/metal demand',
     austin: 'Fast-growing market; steep-slope labor competitive',
     tampa: 'Hurricane nailing patterns and tile common on Gulf Coast',
+    miami: 'Coastal wind ratings and salt-air corrosion on fasteners',
+    jacksonville: 'Humidity and storm exposure; architectural shingles dominant',
+    'st-petersburg': 'Pinellas coastal wind codes; tile and metal common',
     charlotte: 'Moderate labor market; ice/water shield in mountain fringe',
     raleigh: 'Research Triangle growth; asphalt architectural dominant',
+    durham: 'Older housing stock; mini-split and re-roof cycles',
+    cary: 'HOA standards and suburban architectural shingles',
+    wilmington: 'Coastal wind exposure and humidity-ready materials',
     scottsdale: 'Premium materials and labor; HOA architectural standards',
+    mesa: 'East Valley heat; tile and cool-roof asphalt popular',
+    tucson: 'Desert sun and monsoon seasons affect material choice',
+    chandler: 'Master-planned communities; tile and metal accents',
     houston: 'Humidity, wind, and frequent storm-related re-roofs',
+    'san-antonio': 'Tile and stucco common; affordable labor vs. Austin',
+    'fort-worth': 'Hail exposure and western DFW suburban growth',
     orlando: 'Central FL wind codes; tile and metal popular',
-    'san-diego': 'Highest coastal labor; Title 24 / cool-roof requirements',
+    'san-diego': 'Coastal labor premium; Title 24 / cool-roof requirements',
+    'los-angeles': 'Among highest labor rates; earthquake and ember-zone codes',
+    'orange-county': 'HOA tile and composition standards in planned communities',
+    sacramento: 'Inland heat and wildfire ember zones shape roofing choices',
+    'san-francisco': 'Dense housing and premium labor; flat and pitched re-roofs',
   };
 
   function getCity(key) {
-    return CITIES[key] || CITIES.national;
+    return window.EHCCities?.getCity?.(key) || { label: 'National average', material: 1, labor: 1, permit: 275 };
   }
 
   function getCityValue(el) {
     const v = el?.value;
-    if (v && CITIES[v] && v !== 'national') return v;
+    if (v && getCity(v) && v !== 'national') return v;
     const scope = window.EHCCityPath?.parseScope?.() || window.EHCCityPath?.parseCityScope?.();
     const scoped = scope?.cityKey;
-    if (scoped && CITIES[scoped]) return scoped;
-    return v && CITIES[v] ? v : 'national';
+    if (scoped && getCity(scoped)) return scoped;
+    return v && getCity(v) ? v : 'national';
   }
 
   function formatMoney(n) {

@@ -6657,3 +6657,239 @@ h1, h2, h3 {
     position: static;
   }
 }
+
+/* Editorial / E-E-A-T trust pages */
+.editorial-page {
+  padding: var(--space-3xl) 0 var(--space-4xl);
+}
+
+.editorial-page-inner {
+  max-width: 720px;
+}
+
+.editorial-header {
+  margin-bottom: var(--space-3xl);
+}
+
+.editorial-eyebrow {
+  margin: 0 0 var(--space-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.editorial-header h1 {
+  margin: 0 0 var(--space-md);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.editorial-lead {
+  margin: 0 0 var(--space-md);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--color-ink-muted);
+}
+
+.editorial-meta {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-ink-muted);
+}
+
+.editorial-section {
+  margin-bottom: var(--space-3xl);
+}
+
+.editorial-section h2 {
+  margin: 0 0 var(--space-lg);
+  font-size: 1.5rem;
+}
+
+.editorial-section p {
+  line-height: 1.65;
+  color: var(--color-ink-muted);
+}
+
+.editorial-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1.65;
+  color: var(--color-ink-muted);
+}
+
+.editorial-list li + li {
+  margin-top: var(--space-sm);
+}
+
+.methodology-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.methodology-step {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
+}
+
+.methodology-step-num {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-forest);
+  color: var(--color-cream);
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+.methodology-step h3 {
+  margin: 0 0 var(--space-xs);
+  font-size: 1.125rem;
+}
+
+.methodology-step p {
+  margin: 0;
+  font-size: 0.9875rem;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+}
+
+.editorial-cards {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.editorial-card {
+  padding: var(--space-lg);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.editorial-card h3 {
+  margin: 0 0 var(--space-sm);
+  font-size: 1.0625rem;
+}
+
+.editorial-card p {
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.source-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.source-list-item h3 {
+  margin: 0 0 var(--space-xs);
+  font-size: 1.0625rem;
+}
+
+.source-list-item h3 a {
+  color: var(--color-forest);
+}
+
+.source-list-item p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+}
+
+.editorial-cta {
+  padding: var(--space-xl);
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.editorial-cta h2 {
+  margin-bottom: var(--space-sm);
+}
+
+.editorial-cta p {
+  margin-bottom: var(--space-lg);
+}
+
+/* Trust callout on calculators & landing pages */
+.trust-methodology-section {
+  padding: var(--space-2xl) 0;
+  background: var(--color-cream);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.trust-callout {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.trust-callout-eyebrow {
+  margin: 0 0 var(--space-xs);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+}
+
+.trust-callout h2 {
+  margin: 0 0 var(--space-md);
+  font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+}
+
+.trust-callout > p {
+  margin: 0 0 var(--space-md);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-ink-muted);
+}
+
+.trust-callout-list {
+  list-style: none;
+  margin: 0 0 var(--space-md);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: 0.9375rem;
+  color: var(--color-ink-muted);
+}
+
+.trust-callout-links {
+  margin: 0;
+  font-weight: 600;
+}
+
+.trust-callout-links a {
+  color: var(--color-forest);
+}
+
+.trust-callout-links span {
+  margin: 0 var(--space-xs);
+  color: var(--color-ink-muted);
+  font-weight: 400;
+}
+
+@media (min-width: 640px) {
+  .editorial-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

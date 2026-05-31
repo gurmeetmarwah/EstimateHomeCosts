@@ -105,11 +105,41 @@ def related_states(exclude_slug: str) -> list[tuple[str, str]]:
 
 def city_hubs(state_slug: str) -> list[tuple[str, str]]:
     hubs = {
-        "texas": [("Dallas", "/texas/dallas/"), ("Austin", "/texas/austin/")],
-        "arizona": [("Phoenix", "/arizona/phoenix/")],
-        "florida": [("Tampa", "/florida/tampa/")],
-        "north-carolina": [("Raleigh", "/north-carolina/raleigh/")],
-        "california": [("San Diego", "/california/san-diego/")],
+        "texas": [
+            ("Dallas", "/texas/dallas/"),
+            ("Austin", "/texas/austin/"),
+            ("Houston", "/texas/houston/"),
+            ("San Antonio", "/texas/san-antonio/"),
+            ("Fort Worth", "/texas/fort-worth/"),
+        ],
+        "arizona": [
+            ("Phoenix", "/arizona/phoenix/"),
+            ("Scottsdale", "/arizona/scottsdale/"),
+            ("Mesa", "/arizona/mesa/"),
+            ("Tucson", "/arizona/tucson/"),
+            ("Chandler", "/arizona/chandler/"),
+        ],
+        "florida": [
+            ("Tampa", "/florida/tampa/"),
+            ("Orlando", "/florida/orlando/"),
+            ("Miami", "/florida/miami/"),
+            ("Jacksonville", "/florida/jacksonville/"),
+            ("St. Petersburg", "/florida/st-petersburg/"),
+        ],
+        "north-carolina": [
+            ("Raleigh", "/north-carolina/raleigh/"),
+            ("Charlotte", "/north-carolina/charlotte/"),
+            ("Durham", "/north-carolina/durham/"),
+            ("Cary", "/north-carolina/cary/"),
+            ("Wilmington", "/north-carolina/wilmington/"),
+        ],
+        "california": [
+            ("San Diego", "/california/san-diego/"),
+            ("Los Angeles", "/california/los-angeles/"),
+            ("Orange County", "/california/orange-county/"),
+            ("Sacramento", "/california/sacramento/"),
+            ("San Francisco", "/california/san-francisco/"),
+        ],
     }
     return hubs.get(state_slug, [])
 
@@ -152,14 +182,14 @@ TEXAS = {
     "regions": [
         ("North Texas", "Higher hail exposure; impact roofing and storm repairs are common in Dallas–Fort Worth.", "/texas/dallas/"),
         ("Central Texas", "Modern remodel growth in Austin and surrounding suburbs; strong solar interest.", "/texas/austin/"),
-        ("South Texas", "Extreme heat considerations for HVAC sizing and energy-efficient upgrades.", "/texas/"),
-        ("Gulf Coast", "Humidity and storm concerns shape roofing, insulation, and HVAC priorities.", "/texas/"),
+        ("South Texas", "Stucco exteriors, tile roofing, and affordable remodel demand in San Antonio.", "/texas/san-antonio/"),
+        ("Gulf Coast", "Humidity and storm concerns shape roofing, insulation, and HVAC priorities.", "/texas/houston/"),
     ],
     "budgets": BUDGETS_DEFAULT,
     "examples": [
         ("Dallas, TX", "Architectural roof replacement", "$14,200", "/texas/dallas/roof-cost-calculator/"),
         ("Austin, TX", "8 kW solar system", "$24,800", "/texas/austin/solar-panel-cost-calculator/"),
-        ("Houston, TX", "Central AC replacement · 2,400 sq ft", "$9,400", "/hvac-cost-calculator/central-ac/"),
+        ("Houston, TX", "Central AC replacement · 2,400 sq ft", "$9,400", "/texas/houston/hvac-cost-calculator/"),
     ],
     "home_styles": [
         ("Ranch Homes", "Single-story HVAC, roofing, and LVP flooring updates.", "$8k–$45k typical"),
@@ -230,9 +260,9 @@ FLORIDA = {
     ],
     "regions": [
         ("Tampa Bay", "Wind-rated roofing and flood-zone awareness in coastal suburbs.", "/florida/tampa/"),
-        ("Central Florida", "Orlando-area growth drives remodel and AC demand.", "/florida/"),
-        ("South Florida", "Premium labor and condo-friendly renovation projects.", "/florida/"),
-        ("North Florida", "Jacksonville metros with affordable suburban housing stock.", "/florida/"),
+        ("Central Florida", "Orlando-area growth drives remodel and AC demand.", "/florida/orlando/"),
+        ("South Florida", "Premium labor and condo-friendly renovation projects.", "/florida/miami/"),
+        ("North Florida", "Jacksonville metros with affordable suburban housing stock.", "/florida/jacksonville/"),
     ],
     "budgets": BUDGETS_DEFAULT,
     "examples": [
@@ -309,15 +339,15 @@ ARIZONA = {
     ],
     "regions": [
         ("Greater Phoenix", "Maricopa County growth drives remodel and solar demand.", "/arizona/phoenix/"),
-        ("East Valley", "Mesa, Chandler &amp; Gilbert suburban upgrades.", "/arizona/phoenix/"),
-        ("North Scottsdale", "Premium labor and luxury exterior projects.", "/arizona/phoenix/"),
-        ("Southern Arizona", "Tucson market with moderate costs vs. Phoenix.", "/arizona/"),
+        ("East Valley", "Mesa, Chandler &amp; Gilbert suburban upgrades.", "/arizona/mesa/"),
+        ("North Scottsdale", "Premium labor and luxury exterior projects.", "/arizona/scottsdale/"),
+        ("Southern Arizona", "Tucson market with moderate costs vs. Phoenix.", "/arizona/tucson/"),
     ],
     "budgets": BUDGETS_DEFAULT,
     "examples": [
-        ("Scottsdale, AZ", "Tile roof replacement · concrete tile", "$16,200", "/arizona/phoenix/roof-cost-calculator/"),
-        ("Mesa, AZ", "Solar + battery · 7.5 kW system", "$21,400", "/arizona/phoenix/solar-panel-cost-calculator/"),
-        ("Chandler, AZ", "Central AC · high-SEER replacement", "$8,600", "/arizona/phoenix/hvac-cost-calculator/"),
+        ("Scottsdale, AZ", "Tile roof replacement · concrete tile", "$16,200", "/arizona/scottsdale/roof-cost-calculator/"),
+        ("Mesa, AZ", "Solar + battery · 7.5 kW system", "$21,400", "/arizona/mesa/solar-panel-cost-calculator/"),
+        ("Chandler, AZ", "Central AC · high-SEER replacement", "$8,600", "/arizona/chandler/hvac-cost-calculator/"),
     ],
     "home_styles": [
         ("Desert Contemporary", "Stucco, tile roofs, and energy-efficient glazing.", "$12k–$60k typical"),
@@ -388,15 +418,15 @@ NORTH_CAROLINA = {
     ],
     "regions": [
         ("Research Triangle", "Raleigh, Durham &amp; Chapel Hill remodel demand.", "/north-carolina/raleigh/"),
-        ("Charlotte Metro", "Fast-growing suburbs and new construction.", "/north-carolina/"),
-        ("Piedmont", "Moderate labor costs vs. coastal metros.", "/north-carolina/raleigh/"),
-        ("Coast", "Wilmington humidity and storm-ready roofing.", "/north-carolina/"),
+        ("Charlotte Metro", "Fast-growing suburbs and new construction.", "/north-carolina/charlotte/"),
+        ("Piedmont", "Cary &amp; Wake County family subdivision upgrades.", "/north-carolina/cary/"),
+        ("Coast", "Wilmington humidity and storm-ready roofing.", "/north-carolina/wilmington/"),
     ],
     "budgets": BUDGETS_DEFAULT,
     "examples": [
-        ("Cary, NC", "Kitchen refresh · cabinets &amp; counters", "$18,500", "/north-carolina/raleigh/cost/kitchen-remodel/"),
-        ("Apex, NC", "Roof replacement · architectural shingles", "$11,400", "/north-carolina/raleigh/roof-cost-calculator/"),
-        ("Durham, NC", "Mini-split zones · older home", "$9,800", "/north-carolina/raleigh/hvac-cost-calculator/mini-split/"),
+        ("Cary, NC", "Kitchen refresh · cabinets &amp; counters", "$18,500", "/north-carolina/cary/cost/kitchen-remodel/"),
+        ("Charlotte, NC", "Roof replacement · architectural shingles", "$12,200", "/north-carolina/charlotte/roof-cost-calculator/"),
+        ("Wilmington, NC", "Heat pump HVAC · 2,000 sq ft", "$9,400", "/north-carolina/wilmington/hvac-cost-calculator/"),
     ],
     "home_styles": [
         ("Ranch &amp; Split-Level", "Single-story HVAC and roofing updates.", "$8k–$42k typical"),
@@ -467,15 +497,16 @@ CALIFORNIA = {
     ],
     "regions": [
         ("San Diego County", "Coastal labor premiums and strong solar economics.", "/california/san-diego/"),
-        ("Los Angeles", "Large metro with varied housing ages and prices.", "/california/"),
-        ("Bay Area", "Highest labor indexes in the state.", "/california/"),
-        ("Central Valley", "Affordable housing stock and inland heat.", "/california/"),
+        ("Los Angeles", "Large metro with varied housing ages and prices.", "/california/los-angeles/"),
+        ("Orange County", "Suburban luxury kitchen &amp; bath demand.", "/california/orange-county/"),
+        ("Bay Area", "Highest labor indexes in the state.", "/california/san-francisco/"),
+        ("Central Valley", "Affordable housing stock and inland heat.", "/california/sacramento/"),
     ],
     "budgets": BUDGETS_DEFAULT,
     "examples": [
         ("La Jolla, CA", "Tile roof · coastal wind rating", "$19,800", "/california/san-diego/roof-cost-calculator/"),
-        ("Encinitas, CA", "Solar + battery · 8 kW", "$26,500", "/california/san-diego/solar-panel-cost-calculator/"),
-        ("Carlsbad, CA", "Kitchen remodel · open concept", "$42,000", "/california/san-diego/cost/kitchen-remodel/"),
+        ("Pasadena, CA", "Kitchen remodel · open concept", "$48,000", "/california/los-angeles/cost/kitchen-remodel/"),
+        ("Irvine, CA", "Kitchen remodel · quartz counters", "$52,000", "/california/orange-county/cost/kitchen-remodel/"),
     ],
     "home_styles": [
         ("Coastal Contemporary", "Tile, stucco, and solar-ready roofs.", "$18k–$80k typical"),

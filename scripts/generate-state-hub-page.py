@@ -6,8 +6,11 @@ import re
 from pathlib import Path
 
 from brand import COPYRIGHT_LINE, LOGO_ARIA_HOME, LOGO_HTML, SITE_NAME, SITE_ORIGIN
+from cost_engine import city_faq_ranges, city_snapshots, example_mid, fmt_money
 from geo_paths import resolve_city_landing
+from pricing_cities import STATE_DEFAULT_CITY
 from states_config import ALL_STATES, POPULAR_STATE_SLUGS
+from trust_content import trust_callout_html
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -61,6 +64,9 @@ def render(cfg: dict) -> str:
     slug = cfg["slug"]
     title = f"Home Project Costs in {st}"
     L = lambda p: sp(p, slug)
+    pricing_key = STATE_DEFAULT_CITY.get(slug, "national")
+    snapshot_rows = city_snapshots(pricing_key)
+    faq_ranges = city_faq_ranges(pricing_key)
 
     snapshots = "".join(
         f"""          <a href="{L(s['href'])}" class="city-snapshot-card city-snapshot-card--{s['icon']}">
@@ -70,7 +76,7 @@ def render(cfg: dict) -> str:
             <p class="city-snapshot-range">{s['range']}</p>
             <span class="city-snapshot-cta">View costs →</span>
           </a>\n"""
-        for s in cfg["snapshots"]
+        for s in snapshot_rows
     )
 
     cats = ""
@@ -141,10 +147,10 @@ def render(cfg: dict) -> str:
         f"""          <a href="{L(href) if not href.startswith(f'/{slug}/') else href}" class="data-card data-card--inline">
             <h3>{loc}</h3>
             <p>{detail}</p>
-            <p class="data-total">Final cost: <strong>{cost}</strong></p>
+            <p class="data-total">Final cost: <strong>{fmt_money(example_mid(pricing_key, href, detail))}</strong></p>
             <span class="card-cta">View guide →</span>
           </a>\n"""
-        for loc, detail, cost, href in cfg["examples"]
+        for loc, detail, _cost, href in cfg["examples"]
     )
 
     home_styles = "".join(
@@ -157,12 +163,19 @@ def render(cfg: dict) -> str:
     )
 
     faqs = ""
+    cost_faq = (
+        f"Most {st} renovations range from <strong>{faq_ranges['renovation']}+</strong> depending on scope and metro. "
+        f"Bathrooms often run <strong>{faq_ranges['bathroom']}</strong>, kitchens <strong>{faq_ranges['kitchen']}</strong>, "
+        f"and roofing <strong>{faq_ranges['roofing']}</strong> for typical homes."
+    )
     for i, (q, a) in enumerate(cfg["faqs"]):
         open_attr = " open" if i == 0 else ""
         answer = (
             a.replace("__SOLAR_CALC__", L("/solar-panel-cost-calculator/"))
             .replace("__HVAC_CALC__", L("/hvac-cost-calculator/"))
         )
+        if i == 0 and "How much do home renovations cost" in q:
+            answer = cost_faq
         faqs += f"""          <details class="faq-item"{open_attr}>
             <summary>{q}</summary>
             <p>{answer}</p>
@@ -173,7 +186,7 @@ def render(cfg: dict) -> str:
 
     collage = "".join(
         f'<div class="city-collage-item city-collage-item--{s["icon"]}" aria-hidden="true">{ICONS[s["icon"]]}</div>'
-        for s in cfg["snapshots"][:6]
+        for s in snapshot_rows[:6]
     )
 
     return f"""<!DOCTYPE html>
@@ -364,6 +377,7 @@ def render(cfg: dict) -> str:
       </div>
     </section>
 
+{trust_callout_html()}
     <section id="faq" class="section faq-section" aria-labelledby="faq-heading">
       <div class="container faq-container">
         <header class="section-header section-header--center">
@@ -414,6 +428,8 @@ def render(cfg: dict) -> str:
       <div class="container footer-bottom-inner">
         <p>{COPYRIGHT_LINE}</p>
         <ul class="footer-legal">
+          <li><a href="/methodology/">Methodology</a></li>
+          <li><a href="/data-sources/">Data Sources</a></li>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
         </ul>

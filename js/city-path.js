@@ -16,7 +16,7 @@
     garland: 'dallas',
     arlington: 'dallas',
     richardson: 'dallas',
-    'fort-worth': 'dallas',
+    'fort-worth': 'fort-worth',
     austin: 'austin',
     houston: 'houston',
     'round-rock': 'austin',
@@ -25,36 +25,123 @@
     georgetown: 'austin',
     leander: 'austin',
     kyle: 'austin',
-    'san-antonio': 'national',
+    'san-antonio': 'san-antonio',
     'san-marcos': 'austin',
+    'the-woodlands': 'houston',
+    katy: 'houston',
+    'sugar-land': 'houston',
+    pearland: 'houston',
+    'league-city': 'houston',
+    cypress: 'houston',
+    'new-braunfels': 'san-antonio',
+    schertz: 'san-antonio',
+    converse: 'san-antonio',
+    boerne: 'san-antonio',
+    helotes: 'san-antonio',
+    'alamo-heights': 'san-antonio',
+    keller: 'fort-worth',
+    mansfield: 'fort-worth',
+    southlake: 'fort-worth',
+    burleson: 'fort-worth',
+    'north-richland-hills': 'fort-worth',
+    grapevine: 'fort-worth',
     phoenix: 'phoenix',
-    scottsdale: 'phoenix',
-    mesa: 'phoenix',
-    chandler: 'phoenix',
-    gilbert: 'phoenix',
+    scottsdale: 'scottsdale',
+    mesa: 'mesa',
+    chandler: 'chandler',
+    gilbert: 'chandler',
     glendale: 'phoenix',
     tempe: 'phoenix',
-    tucson: 'phoenix',
+    peoria: 'phoenix',
+    surprise: 'phoenix',
+    avondale: 'phoenix',
+    goodyear: 'phoenix',
+    'paradise-valley': 'scottsdale',
+    'fountain-hills': 'scottsdale',
+    'cave-creek': 'scottsdale',
+    'north-scottsdale': 'scottsdale',
+    'mccormick-ranch': 'scottsdale',
+    'dc-ranch': 'scottsdale',
+    'apache-junction': 'mesa',
+    'queen-creek': 'mesa',
+    'gold-canyon': 'mesa',
+    'red-mountain': 'mesa',
+    'superstition-springs': 'mesa',
+    eastmark: 'mesa',
+    'oro-valley': 'tucson',
+    marana: 'tucson',
+    sahuarita: 'tucson',
+    'green-valley': 'tucson',
+    'catalina-foothills': 'tucson',
+    vail: 'tucson',
+    'sun-lakes': 'chandler',
+    ahwatukee: 'chandler',
+    ocotillo: 'chandler',
+    'san-tan-valley': 'chandler',
+    'chandler-heights': 'chandler',
     tampa: 'tampa',
-    'st-petersburg': 'tampa',
+    'st-petersburg': 'st-petersburg',
     clearwater: 'tampa',
     brandon: 'tampa',
     riverview: 'tampa',
     'wesley-chapel': 'tampa',
     lakeland: 'tampa',
+    'plant-city': 'tampa',
+    kissimmee: 'orlando',
+    'winter-park': 'orlando',
+    sanford: 'orlando',
+    'lake-nona': 'orlando',
+    'altamonte-springs': 'orlando',
+    oviedo: 'orlando',
+    'miami-beach': 'miami',
+    'coral-gables': 'miami',
+    hialeah: 'miami',
+    'fort-lauderdale': 'miami',
+    'pembroke-pines': 'miami',
+    homestead: 'miami',
+    'jacksonville-beach': 'jacksonville',
+    'orange-park': 'jacksonville',
+    'st-augustine': 'jacksonville',
+    'ponte-vedra': 'jacksonville',
+    'fernandina-beach': 'jacksonville',
+    mandarin: 'jacksonville',
+    largo: 'st-petersburg',
+    'pinellas-park': 'st-petersburg',
+    gulfport: 'st-petersburg',
+    'treasure-island': 'st-petersburg',
+    seminole: 'st-petersburg',
     orlando: 'orlando',
-    miami: 'national',
-    jacksonville: 'national',
+    miami: 'miami',
+    jacksonville: 'jacksonville',
     raleigh: 'raleigh',
-    cary: 'raleigh',
-    apex: 'raleigh',
-    durham: 'raleigh',
+    cary: 'cary',
+    apex: 'cary',
+    durham: 'durham',
     'wake-forest': 'raleigh',
-    'chapel-hill': 'raleigh',
-    morrisville: 'raleigh',
+    'chapel-hill': 'durham',
+    morrisville: 'cary',
+    'holly-springs': 'cary',
+    garner: 'raleigh',
+    'fuquay-varina': 'cary',
     charlotte: 'charlotte',
+    matthews: 'charlotte',
+    huntersville: 'charlotte',
+    concord: 'charlotte',
+    'fort-mill': 'charlotte',
+    gastonia: 'charlotte',
+    'mint-hill': 'charlotte',
+    hillsborough: 'durham',
+    creedmoor: 'durham',
+    roxboro: 'durham',
+    butner: 'durham',
     greensboro: 'national',
-    wilmington: 'national',
+    wilmington: 'wilmington',
+    'wilmington-beach': 'wilmington',
+    'wrightsville-beach': 'wilmington',
+    'carolina-beach': 'wilmington',
+    leland: 'wilmington',
+    hampstead: 'wilmington',
+    ogden: 'wilmington',
     'san-diego': 'san-diego',
     'la-jolla': 'san-diego',
     encinitas: 'san-diego',
@@ -62,8 +149,34 @@
     'chula-vista': 'san-diego',
     oceanside: 'san-diego',
     escondido: 'san-diego',
-    'los-angeles': 'national',
-    'orange-county': 'national',
+    pasadena: 'los-angeles',
+    burbank: 'los-angeles',
+    'long-beach': 'los-angeles',
+    'santa-monica': 'los-angeles',
+    torrance: 'los-angeles',
+    'beverly-hills': 'los-angeles',
+    irvine: 'orange-county',
+    anaheim: 'orange-county',
+    'santa-ana': 'orange-county',
+    'newport-beach': 'orange-county',
+    'huntington-beach': 'orange-county',
+    'costa-mesa': 'orange-county',
+    'elk-grove': 'sacramento',
+    roseville: 'sacramento',
+    folsom: 'sacramento',
+    davis: 'sacramento',
+    'citrus-heights': 'sacramento',
+    rocklin: 'sacramento',
+    oakland: 'san-francisco',
+    berkeley: 'san-francisco',
+    'san-jose': 'san-francisco',
+    'daly-city': 'san-francisco',
+    'san-mateo': 'san-francisco',
+    'palo-alto': 'san-francisco',
+    'los-angeles': 'los-angeles',
+    'orange-county': 'orange-county',
+    sacramento: 'sacramento',
+    'san-francisco': 'san-francisco',
     'las-vegas': 'national',
   };
 
@@ -74,12 +187,27 @@
     'phoenix',
     'austin',
     'tampa',
+    'miami',
+    'jacksonville',
+    'st-petersburg',
     'charlotte',
     'raleigh',
+    'durham',
+    'cary',
+    'wilmington',
     'scottsdale',
+    'mesa',
+    'tucson',
+    'chandler',
     'houston',
     'orlando',
+    'san-antonio',
+    'fort-worth',
     'san-diego',
+    'los-angeles',
+    'orange-county',
+    'sacramento',
+    'san-francisco',
   ]);
 
   const STATE_DEFAULT_CITY = {
@@ -108,7 +236,41 @@
 
   const STATE_SLUGS = new Set(Object.keys(STATE_DEFAULT_CITY));
 
-  const GUIDE_LOCATION_SELECTS = ['kitchen-location', 'bath-location', 'hvac-location'];
+  const GUIDE_LOCATION_SELECTS = ['kitchen-location', 'bath-location', 'hvac-location', 'roof-location'];
+
+  /** Metro hub city keys shown on /{state}/{city}/ scoped pages */
+  const STATE_CITIES = {
+    texas: ['dallas', 'houston', 'austin', 'san-antonio', 'fort-worth'],
+    florida: ['tampa', 'orlando', 'miami', 'jacksonville', 'st-petersburg'],
+    arizona: ['phoenix', 'scottsdale', 'mesa', 'tucson', 'chandler'],
+    'north-carolina': ['raleigh', 'charlotte', 'durham', 'cary', 'wilmington'],
+    california: ['san-diego', 'los-angeles', 'orange-county', 'sacramento', 'san-francisco'],
+  };
+
+  function isGuideLocationSelect(id) {
+    return GUIDE_LOCATION_SELECTS.includes(id);
+  }
+
+  function isMetroCitySelect(select) {
+    if (!select?.id) return false;
+    if (select.id === 'quick-city' || select.id.endsWith('-city')) return true;
+    return !!select.querySelector(
+      'option[value="dallas"], option[value="houston"], option[value="phoenix"], option[value="austin"]'
+    );
+  }
+
+  function rebuildSelectWithStateCities(select, stateSlug, selectedKey) {
+    const cities = STATE_CITIES[stateSlug];
+    if (!cities?.length) return;
+    select.innerHTML = '';
+    cities.forEach((key) => {
+      const opt = document.createElement('option');
+      opt.value = key;
+      opt.textContent = getLocationLabel(key);
+      if (key === selectedKey) opt.selected = true;
+      select.appendChild(opt);
+    });
+  }
 
   function copyReplacements(stateSlug) {
     const label = STATE_AVERAGE_LABEL[stateSlug];
@@ -198,6 +360,17 @@
   }
 
   function configureGuideLocationSelects(scope) {
+    if (scope.scope === 'city') {
+      const cities = STATE_CITIES[scope.stateSlug];
+      if (!cities?.length) return;
+      GUIDE_LOCATION_SELECTS.forEach((id) => {
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        rebuildSelectWithStateCities(sel, scope.stateSlug, scope.cityKey);
+      });
+      return;
+    }
+
     const locKey = STATE_LOCATION_KEY[scope.stateSlug];
     const label = STATE_AVERAGE_LABEL[scope.stateSlug];
     if (!locKey || !label) return;
@@ -220,7 +393,12 @@
 
   function configureCitySelects(scope) {
     document.querySelectorAll('select').forEach((sel) => {
-      if (GUIDE_LOCATION_SELECTS.includes(sel.id)) return;
+      if (isGuideLocationSelect(sel.id)) return;
+
+      if (scope.scope === 'city' && STATE_CITIES[scope.stateSlug] && isMetroCitySelect(sel)) {
+        rebuildSelectWithStateCities(sel, scope.stateSlug, scope.cityKey);
+        return;
+      }
 
       if (scope.stateSlug && STATE_SLUGS.has(scope.stateSlug)) {
         ensureStatewideOption(sel, scope);
@@ -368,13 +546,14 @@
       const id = e.target.id;
       if (
         !['quick-city', 'roof-city', 'hvac-city', 'fence-city', 'flooring-city', 'solar-city'].includes(id) &&
-        !GUIDE_LOCATION_SELECTS.includes(id)
+        !id.endsWith('-city') &&
+        !isGuideLocationSelect(id)
       ) {
         return;
       }
       let key = e.target.value;
       const locKey = STATE_LOCATION_KEY[scope.stateSlug];
-      if (GUIDE_LOCATION_SELECTS.includes(id) && locKey && key === locKey && scope.stateSlug === 'texas') {
+      if (isGuideLocationSelect(id) && locKey && key === locKey && scope.stateSlug === 'texas') {
         key = 'texas';
       }
       updateHeroLocationLabels(key);

@@ -6,7 +6,17 @@ from pathlib import Path
 
 from brand import COPYRIGHT_LINE, LOGO_ARIA_HOME, LOGO_HTML, SITE_NAME, SITE_ORIGIN
 from cities_config import POPULAR_CITIES
+from cost_engine import (
+    PERMIT_FAQ,
+    ROOFING_FAQ,
+    SOLAR_FAQ,
+    city_faq_ranges,
+    city_snapshots,
+    example_mid,
+    fmt_money,
+)
 from geo_paths import resolve_city_landing, suburb_calculator_href
+from trust_content import trust_callout_html
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -48,6 +58,14 @@ def render(m: dict) -> str:
     prefix = f"/{state_slug}/{m['slug']}"
     L = lambda p: lh(p, prefix, state_slug)
     title = f"Home Project Costs in {city}, {abbr}"
+    city_key = m["city_key"]
+    snapshot_rows = city_snapshots(city_key)
+    faq = city_faq_ranges(city_key)
+    permit_faq = PERMIT_FAQ.get(state_slug, PERMIT_FAQ["texas"])
+    roofing_faq = ROOFING_FAQ.get(state_slug, ROOFING_FAQ["texas"])
+    solar_faq = SOLAR_FAQ.get(state_slug, SOLAR_FAQ["texas"]).format(
+        solar_href=L("/solar-panel-cost-calculator/")
+    )
     snapshots = "".join(
         f"""          <a href="{L(s['href'])}" class="city-snapshot-card city-snapshot-card--{s['icon']}">
             <span class="city-snapshot-icon" aria-hidden="true">{ICONS[s['icon']]}</span>
@@ -56,7 +74,7 @@ def render(m: dict) -> str:
             <p class="city-snapshot-range">{s['range']}</p>
             <span class="city-snapshot-cta">View costs →</span>
           </a>\n"""
-        for s in m["snapshots"]
+        for s in snapshot_rows
     )
     cats = ""
     for cat in m["categories"]:
@@ -103,10 +121,10 @@ def render(m: dict) -> str:
         f"""          <a href="{L(href)}" class="data-card data-card--inline">
             <h3>{loc}</h3>
             <p>{detail}</p>
-            <p class="data-total">Final cost: <strong>{cost}</strong></p>
+            <p class="data-total">Final cost: <strong>{fmt_money(example_mid(city_key, href, detail))}</strong></p>
             <span class="card-cta">View guide →</span>
           </a>\n"""
-        for loc, detail, cost, href in m["examples"]
+        for loc, detail, _cost, href in m["examples"]
     )
     nearby_cities = "".join(
         f'<a href="{resolve_city_landing(state_slug, slug)}">{name}</a>'
@@ -120,7 +138,7 @@ def render(m: dict) -> str:
     climate = "".join(f"<li>{b}</li>" for b in m["climate_bullets"])
     collage = "".join(
         f'<div class="city-collage-item city-collage-item--{s["icon"]}" aria-hidden="true">{ICONS[s["icon"]]}</div>'
-        for s in m["snapshots"][:6]
+        for s in snapshot_rows[:6]
     )
     footer_suburb_links = "".join(
         f'          <li><a href="{suburb_calculator_href(state_slug, hub_slug, slug)}">{name}</a></li>\n'
@@ -353,6 +371,7 @@ def render(m: dict) -> str:
     </section>
 
     <!-- 12. FAQ -->
+{trust_callout_html()}
     <section id="faq" class="section faq-section" aria-labelledby="faq-heading">
       <div class="container faq-container">
         <header class="section-header section-header--center">
@@ -361,23 +380,23 @@ def render(m: dict) -> str:
         <div class="faq-list">
           <details class="faq-item" open>
             <summary>How much do home renovations cost in {city}?</summary>
-            <p>Most {city}-area renovations range from <strong>$5,000–$80,000+</strong> depending on scope. Bathrooms often run <strong>$9,000–$30,000</strong>, kitchens <strong>$15,000–$50,000+</strong>, and roofing <strong>$7,000–$18,000</strong> for typical homes.</p>
+            <p>Most {city}-area renovations range from <strong>{faq['renovation']}+</strong> depending on scope. Bathrooms often run <strong>{faq['bathroom']}</strong>, kitchens <strong>{faq['kitchen']}</strong>, and roofing <strong>{faq['roofing']}</strong> for typical homes.</p>
           </details>
           <details class="faq-item">
             <summary>What home projects add the most value?</summary>
-            <p>In the {city} market, <strong>kitchen remodels</strong>, <strong>roof replacement</strong> after storm damage, and <strong>energy-efficient HVAC</strong> commonly deliver strong resale appeal.</p>
+            <p>In the {city} market, <strong>kitchen remodels</strong>, <strong>roof replacement</strong>, and <strong>energy-efficient HVAC</strong> commonly deliver strong resale appeal.</p>
           </details>
           <details class="faq-item">
             <summary>What permits are common in {city}?</summary>
-            <p>Full <strong>roof replacements</strong>, <strong>HVAC changeouts</strong>, <strong>electrical panel upgrades</strong> for solar, and many <strong>structural remodels</strong> require city or county permits in the DFW metro.</p>
+            <p>{permit_faq}</p>
           </details>
           <details class="faq-item">
             <summary>Are solar panels worth it in {st}?</summary>
-            <p>Yes for many homeowners with bills above <strong>$150/month</strong> and good sun exposure. {st} offers strong solar production and the <strong>30% federal tax credit</strong>. See our <a href="{L('/solar-panel-cost-calculator/')}">solar calculator</a>.</p>
+            <p>{solar_faq}</p>
           </details>
           <details class="faq-item">
             <summary>What roofing materials work best in {city}?</summary>
-            <p><strong>Architectural asphalt shingles</strong> are most common. <strong>Impact-resistant (Class 4)</strong> shingles are popular after hail. <strong>Metal roofing</strong> is growing in suburban new builds.</p>
+            <p>{roofing_faq}</p>
           </details>
         </div>
       </div>
@@ -436,6 +455,8 @@ def render(m: dict) -> str:
       <div class="container footer-bottom-inner">
         <p>{COPYRIGHT_LINE}</p>
         <ul class="footer-legal">
+          <li><a href="/methodology/">Methodology</a></li>
+          <li><a href="/data-sources/">Data Sources</a></li>
           <li><a href="/privacy/">Privacy</a></li>
           <li><a href="/terms/">Terms</a></li>
         </ul>

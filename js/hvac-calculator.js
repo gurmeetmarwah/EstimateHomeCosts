@@ -88,20 +88,32 @@
     return `${formatMoney(low)}–${formatMoney(high)}`;
   }
 
+  function getLocMult(locKey) {
+    return window.EHCCities?.getGuideLocationMult?.(locKey) ?? LOCATION_MULT[locKey] ?? 1;
+  }
+
+  function getLocLabel(locKey) {
+    return window.EHCCities?.getGuideLocationLabel?.(locKey) ?? LOCATION_LABELS[locKey] ?? 'National average';
+  }
+
+  function getPermitMult(locKey) {
+    return window.EHCCities?.getGuidePermitMult?.(locKey, PERMIT_BASE) ?? PERMIT_MULT[locKey] ?? 1;
+  }
+
   function compute() {
     const sqft = Math.max(800, Math.min(8000, Number(els.size.value) || 2000));
     const systemKey = els.system.value;
     const system = SYSTEM_RATES[systemKey] || SYSTEM_RATES['central-ac'];
     const effMult = EFFICIENCY_MULT[els.efficiency.value] || 1;
     const locKey = els.location.value || 'national';
-    const locMult = LOCATION_MULT[locKey] || 1;
+    const locMult = getLocMult(locKey);
     const ductEl = form.querySelector('[name="ductwork"]:checked');
     const ductwork = ductEl?.value === 'yes';
 
     const sizeFactor = sqft / 2000;
     const equipmentLabor = sqft * system.rate * effMult * locMult;
     const ductCost = ductwork ? DUCTWORK_BASE * sizeFactor * locMult : 0;
-    const permitCost = PERMIT_BASE * (PERMIT_MULT[locKey] || 1);
+    const permitCost = PERMIT_BASE * getPermitMult(locKey);
     const mid = equipmentLabor + ductCost + permitCost;
     const low = mid * 0.92;
     const high = mid * 1.08;
@@ -115,7 +127,7 @@
       permitCost,
       perSqftLow: low / sqft,
       perSqftHigh: high / sqft,
-      locLabel: LOCATION_LABELS[locKey] || 'National average',
+      locLabel: getLocLabel(locKey),
     };
   }
 
@@ -137,18 +149,25 @@
 
   const STATE_LOC = { texas: 'tx', florida: 'fl', arizona: 'az', 'north-carolina': 'nc', california: 'ca' };
 
-  function applyStateLocationDefault() {
+  function applyGeoLocationDefault() {
     const scope = window.EHC_CITY_SCOPE;
-    if (!scope || scope.scope !== 'state' || !els.location) return;
-    const loc = STATE_LOC[scope.stateSlug];
-    if (loc && els.location.querySelector(`option[value="${loc}"]`)) {
-      els.location.value = loc;
+    if (!scope || !els.location) return;
+    if (scope.scope === 'state') {
+      const loc = STATE_LOC[scope.stateSlug];
+      if (loc && els.location.querySelector(`option[value="${loc}"]`)) {
+        els.location.value = loc;
+        update();
+      }
+      return;
+    }
+    if (scope.scope === 'city' && els.location.querySelector(`option[value="${scope.cityKey}"]`)) {
+      els.location.value = scope.cityKey;
       update();
     }
   }
 
-  window.addEventListener('ehc:city-scope', applyStateLocationDefault);
-  applyStateLocationDefault();
+  window.addEventListener('ehc:city-scope', applyGeoLocationDefault);
+  applyGeoLocationDefault();
 
   const stickyCta = document.querySelector('.sticky-cta');
   const ctaSection = document.getElementById('contractor-cta');

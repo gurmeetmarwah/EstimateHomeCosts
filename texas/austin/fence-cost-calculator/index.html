@@ -798,6 +798,34 @@
     </section>
 
     <!-- 11. FAQ -->
+    <section class="trust-methodology-section" aria-labelledby="methodology-trust-heading">
+      <div class="container">
+        <div class="trust-callout">
+          <p class="trust-callout-eyebrow">Transparent pricing</p>
+          <h2 id="methodology-trust-heading">How we calculate costs</h2>
+          <p>
+            Estimates combine <strong>national installed-cost benchmarks</strong> with
+            <strong>metro-specific labor, material, and permit multipliers</strong> drawn from
+            BLS wage data, EIA utility rates, NREL solar benchmarks, and RSMeans-style unit costs.
+            City and state pages use the same formulas as our live calculators.
+          </p>
+          <ul class="trust-callout-list">
+            <li>Material + labor rates calibrated to 2026 U.S. market medians</li>
+            <li>25 metro areas with published multipliers — not generic national averages</li>
+            <li>Ranges validated against contractor bids (±10–15% typical variance)</li>
+            <li>Updated quarterly — last review <time datetime="2026-05-22">May 2026</time></li>
+          </ul>
+          <p class="trust-callout-links">
+            <a href="/texas/austin/methodology/">Full methodology</a>
+            <span aria-hidden="true">·</span>
+            <a href="/texas/austin/data-sources/">Data sources</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+
     <section id="faq" class="section faq-section" aria-labelledby="faq-heading">
       <div class="container faq-container">
         <header class="section-header section-header--center">
@@ -936,9 +964,10 @@
     </div>
   </footer>
 
-  <script src="/js/main.js" defer></script>
+    <script src="/js/calculator-cities.js"></script>
+  <script src="/js/city-path.js"></script>
+<script src="/js/main.js" defer></script>
   <script src="/js/calculator-cities.js" defer></script>
-<script src="/js/city-path.js"></script>
   <script src="/js/fence-cost-calculator.js" defer></script>
 </body>
 </html>

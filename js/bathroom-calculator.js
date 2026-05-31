@@ -73,11 +73,19 @@
     return `${formatMoney(low)}–${formatMoney(high)}`;
   }
 
+  function getLocMult(locKey) {
+    return window.EHCCities?.getGuideLocationMult?.(locKey) ?? LOCATION_MULT[locKey] ?? 1;
+  }
+
+  function getLocLabel(locKey) {
+    return window.EHCCities?.getGuideLocationLabel?.(locKey) ?? LOCATION_LABELS[locKey] ?? 'National average';
+  }
+
   function compute() {
     const sizeKey = els.size.value;
     const size = SIZE_BASE[sizeKey] || SIZE_BASE['full-bath'];
     const locKey = els.location.value || 'national';
-    const locMult = LOCATION_MULT[locKey] || 1;
+    const locMult = getLocMult(locKey);
     const layoutEl = form.querySelector('[name="layout"]:checked');
     const layoutYes = layoutEl?.value === 'yes';
 
@@ -97,7 +105,7 @@
     const permits = 450 * locMult;
     const layoutPremium = layoutYes ? mid * 0.12 : 0;
 
-    return { low, high, mid, materials, labor, permits, layoutPremium, locLabel: LOCATION_LABELS[locKey] || 'National average' };
+    return { low, high, mid, materials, labor, permits, layoutPremium, locLabel: getLocLabel(locKey) };
   }
 
   function update() {
@@ -118,18 +126,25 @@
 
   const STATE_LOC = { texas: 'tx', florida: 'fl', arizona: 'az', 'north-carolina': 'nc', california: 'ca' };
 
-  function applyStateLocationDefault() {
+  function applyGeoLocationDefault() {
     const scope = window.EHC_CITY_SCOPE;
-    if (!scope || scope.scope !== 'state' || !els.location) return;
-    const loc = STATE_LOC[scope.stateSlug];
-    if (loc && els.location.querySelector(`option[value="${loc}"]`)) {
-      els.location.value = loc;
+    if (!scope || !els.location) return;
+    if (scope.scope === 'state') {
+      const loc = STATE_LOC[scope.stateSlug];
+      if (loc && els.location.querySelector(`option[value="${loc}"]`)) {
+        els.location.value = loc;
+        update();
+      }
+      return;
+    }
+    if (scope.scope === 'city' && els.location.querySelector(`option[value="${scope.cityKey}"]`)) {
+      els.location.value = scope.cityKey;
       update();
     }
   }
 
-  window.addEventListener('ehc:city-scope', applyStateLocationDefault);
-  applyStateLocationDefault();
+  window.addEventListener('ehc:city-scope', applyGeoLocationDefault);
+  applyGeoLocationDefault();
 
   const stickyCta = document.querySelector('.sticky-cta');
   const ctaSection = document.getElementById('contractor-cta');

@@ -10,7 +10,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from cities_config import POPULAR_CITIES, SCOPED_PATHS
 from geo_paths import city_prefix_path
 
-INJECT = '  <script src="/js/city-path.js"></script>\n'
+GEO_SCRIPTS = (
+    '  <script src="/js/calculator-cities.js"></script>\n'
+    '  <script src="/js/city-path.js"></script>\n'
+)
+
+
+def ensure_geo_scripts(html: str) -> str:
+    """Ensure calculator-cities + city-path load on every city-scoped page."""
+    html = re.sub(r'\s*<script src="/js/calculator-cities\.js"></script>\s*', '\n', html)
+    html = re.sub(r'\s*<script src="/js/city-path\.js"></script>\s*', '\n', html)
+    if 'src="/js/main.js"' in html:
+        return html.replace('<script src="/js/main.js"', GEO_SCRIPTS + '<script src="/js/main.js"', 1)
+    return html.replace('</body>', GEO_SCRIPTS + '</body>', 1)
 
 
 def rewrite_html_for_city(html: str, state_slug: str, city_slug: str) -> str:
@@ -41,22 +53,7 @@ def mirror_page(state_slug: str, city_slug: str, rel: str) -> None:
     dest = ROOT / state_slug / city_slug / rel / "index.html"
     html = src.read_text(encoding="utf-8")
     html = rewrite_html_for_city(html, state_slug, city_slug)
-    if "city-path.js" not in html:
-        if "calculator-cities.js" in html:
-            html = html.replace(
-                '<script src="/js/calculator-cities.js" defer></script>',
-                '<script src="/js/calculator-cities.js" defer></script>\n' + INJECT.strip(),
-                1,
-            )
-        else:
-            html = re.sub(
-                r'(<script src="/js/main\.js")',
-                INJECT + r"\1",
-                html,
-                count=1,
-            )
-        if "city-path.js" not in html:
-            html = html.replace("</body>", INJECT + "</body>")
+    html = ensure_geo_scripts(html)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(html, encoding="utf-8")
     print(f"Wrote {dest.relative_to(ROOT)}")

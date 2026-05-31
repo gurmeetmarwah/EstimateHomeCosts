@@ -60,19 +60,27 @@
     return '$' + Math.round(n).toLocaleString('en-US');
   }
 
+  function getLocMult(locKey) {
+    return window.EHCCities?.getGuideLocationMult?.(locKey) ?? LOCATION_MULT[locKey] ?? 1;
+  }
+
+  function getPermitMult(locKey) {
+    return window.EHCCities?.getGuidePermitMult?.(locKey, PERMIT_BASE) ?? PERMIT_MULT[locKey] ?? 1;
+  }
+
   function calculate() {
     const sqft = Math.max(500, Math.min(10000, Number(els.size.value) || 2000));
     const matKey = els.material.value;
     const rates = MATERIAL_RATES[matKey] || MATERIAL_RATES['asphalt-arch'];
     const slopeMult = SLOPE_MULT[els.slope.value] || 1;
     const locKey = els.location.value;
-    const locMult = LOCATION_MULT[locKey] || 1;
+    const locMult = getLocMult(locKey);
     const includeTearoff = els.tearoff.checked;
 
     const materialCost = sqft * rates.material * slopeMult * locMult;
     const laborCost = sqft * rates.labor * slopeMult * locMult;
     const tearoffCost = includeTearoff ? sqft * TEAROFF_PER_SQFT * locMult : 0;
-    const permitCost = PERMIT_BASE * (PERMIT_MULT[locKey] || 1);
+    const permitCost = PERMIT_BASE * getPermitMult(locKey);
 
     const subtotal = materialCost + laborCost + tearoffCost + permitCost;
     const low = subtotal * 0.9;
@@ -97,6 +105,27 @@
   });
 
   calculate();
+
+  function applyGeoLocationDefault() {
+    const scope = window.EHC_CITY_SCOPE;
+    if (!scope || !els.location) return;
+    if (scope.scope === 'state') {
+      const STATE_LOC = { texas: 'tx', florida: 'fl', arizona: 'az', 'north-carolina': 'nc', california: 'ca' };
+      const loc = STATE_LOC[scope.stateSlug];
+      if (loc && els.location.querySelector(`option[value="${loc}"]`)) {
+        els.location.value = loc;
+        calculate();
+      }
+      return;
+    }
+    if (scope.scope === 'city' && els.location.querySelector(`option[value="${scope.cityKey}"]`)) {
+      els.location.value = scope.cityKey;
+      calculate();
+    }
+  }
+
+  window.addEventListener('ehc:city-scope', applyGeoLocationDefault);
+  applyGeoLocationDefault();
 
   const stickyCta = document.querySelector('.sticky-cta');
   const ctaSection = document.getElementById('contractor-cta');

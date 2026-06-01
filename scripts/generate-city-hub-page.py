@@ -16,6 +16,7 @@ from cost_engine import (
     fmt_money,
 )
 from geo_paths import resolve_city_landing, suburb_calculator_href
+from local_seo_content import get_city_local_seo, local_guide_section_html
 from trust_content import trust_callout_html
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -134,8 +135,14 @@ def render(m: dict) -> str:
         f'<a href="{suburb_calculator_href(state_slug, hub_slug, slug)}">{name}</a>'
         for name, slug in m["nearby_suburbs"]
     )
-    bullets = "".join(f"<li>{b}</li>" for b in m["market_bullets"])
-    climate = "".join(f"<li>{b}</li>" for b in m["climate_bullets"])
+    local_seo = get_city_local_seo(city_key)
+    local_guide = local_guide_section_html(
+        city,
+        local_seo,
+        city_key=city_key,
+        link_fn=L,
+        trending=m["trending"],
+    )
     collage = "".join(
         f'<div class="city-collage-item city-collage-item--{s["icon"]}" aria-hidden="true">{ICONS[s["icon"]]}</div>'
         for s in snapshot_rows[:6]
@@ -193,6 +200,7 @@ def render(m: dict) -> str:
         <ul>
           <li><a href="/#projects">Projects</a></li>
           <li><a href="#categories">Categories</a></li>
+          <li><a href="#local-guide">Local guide</a></li>
           <li><a href="#suburbs">Suburbs</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -260,13 +268,16 @@ def render(m: dict) -> str:
       </div>
     </section>
 
-    <!-- 4. Market insights -->
+    <!-- 4. Local cost guide (labor, permits, climate, projects, drivers) -->
+{local_guide}
+
+    <!-- 5. Market snapshot callout -->
     <section id="insights" class="section cost-detail-section" aria-labelledby="insights-heading">
       <div class="container cost-detail-grid">
         <div class="cost-detail-copy">
           <h2 id="insights-heading">Local Market Insights — {city}</h2>
           <p class="city-insight-lead">{m['market_insight']}</p>
-          <ul class="cost-detail-list">{bullets}</ul>
+          <ul class="cost-detail-list">{''.join(f'<li>{b}</li>' for b in m['market_bullets'])}</ul>
         </div>
         <div class="city-insight-callout">
           <p>{m['metro_callout']}</p>
@@ -274,7 +285,7 @@ def render(m: dict) -> str:
       </div>
     </section>
 
-    <!-- 5. Popular projects -->
+    <!-- 6. Popular projects -->
     <section id="popular" class="section related-section" aria-labelledby="popular-heading">
       <div class="container">
         <header class="section-header section-header--center">
@@ -284,7 +295,7 @@ def render(m: dict) -> str:
       </div>
     </section>
 
-    <!-- 6. Home types -->
+    <!-- 7. Home types -->
     <section id="home-types" class="section city-home-types-section" aria-labelledby="home-types-heading">
       <div class="container">
         <header class="section-header section-header--center">
@@ -295,7 +306,7 @@ def render(m: dict) -> str:
       </div>
     </section>
 
-    <!-- 7. Suburbs -->
+    <!-- 8. Suburbs -->
     <section id="suburbs" class="section city-suburbs-section" aria-labelledby="suburbs-heading">
       <div class="container">
         <header class="section-header section-header--center">
@@ -303,16 +314,6 @@ def render(m: dict) -> str:
           <p>Explore costs in popular {city}-area communities</p>
         </header>
         <div class="city-suburb-grid">{suburbs}        </div>
-      </div>
-    </section>
-
-    <!-- 8. Climate -->
-    <section id="climate" class="section cost-detail-section cost-detail-section--alt" aria-labelledby="climate-heading">
-      <div class="container">
-        <header class="section-header section-header--center">
-          <h2 id="climate-heading">{city} Climate Considerations</h2>
-        </header>
-        <ul class="city-climate-list">{climate}</ul>
       </div>
     </section>
 

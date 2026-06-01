@@ -10,6 +10,7 @@ from cost_engine import city_faq_ranges, city_snapshots, example_mid, fmt_money
 from geo_paths import resolve_city_landing
 from pricing_cities import STATE_DEFAULT_CITY
 from states_config import ALL_STATES, POPULAR_STATE_SLUGS
+from local_seo_content import get_state_local_seo, local_guide_section_html
 from trust_content import trust_callout_html
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,6 +68,14 @@ def render(cfg: dict) -> str:
     pricing_key = STATE_DEFAULT_CITY.get(slug, "national")
     snapshot_rows = city_snapshots(pricing_key)
     faq_ranges = city_faq_ranges(pricing_key)
+    local_seo = get_state_local_seo(slug)
+    local_guide = local_guide_section_html(
+        st,
+        local_seo,
+        city_key=pricing_key,
+        link_fn=L,
+        trending=[(t, d, h) for t, d, h in cfg["trending"]],
+    )
 
     snapshots = "".join(
         f"""          <a href="{L(s['href'])}" class="city-snapshot-card city-snapshot-card--{s['icon']}">
@@ -236,6 +245,7 @@ def render(cfg: dict) -> str:
         <ul>
           <li><a href="/#projects">Projects</a></li>
           <li><a href="#categories">Categories</a></li>
+          <li><a href="#local-guide">Local guide</a></li>
           <li><a href="#cities">Cities</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -298,6 +308,8 @@ def render(cfg: dict) -> str:
         <div class="city-category-grid">{cats}        </div>
       </div>
     </section>
+
+{local_guide}
 
     <section id="cities" class="section state-cities-section" aria-labelledby="cities-heading">
       <div class="container">

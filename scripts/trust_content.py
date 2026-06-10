@@ -119,7 +119,7 @@ def trust_callout_html(*, prefix: str = "") -> str:
           <ul class="trust-callout-list">
             <li>Material + labor rates calibrated to 2026 U.S. market medians</li>
             <li>25 metro areas with published multipliers — not generic national averages</li>
-            <li>Ranges validated against contractor bids (±10–15% typical variance)</li>
+            <li>Ranges validated against industry benchmarks (±10–15% typical variance)</li>
             <li>Updated quarterly — last review <time datetime="{LAST_UPDATED}">{LAST_UPDATED_LABEL}</time></li>
           </ul>
           <p class="trust-callout-links">
@@ -267,7 +267,7 @@ def render_methodology_page() -> str:
           <p class="editorial-lead">
             {SITE_NAME} publishes localized home improvement cost ranges using documented formulas,
             public data sources, and regular calibration against real project pricing. This page explains
-            exactly how we build estimates — so you can judge accuracy before requesting contractor bids.
+            exactly how we build estimates — so you can judge accuracy before finalizing your project budget.
           </p>
           <p class="editorial-meta">Last updated: <time datetime="{LAST_UPDATED}">{LAST_UPDATED_LABEL}</time></p>
         </header>

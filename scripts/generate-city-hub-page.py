@@ -338,40 +338,7 @@ def render(m: dict) -> str:
       </div>
     </section>
 
-    <!-- 11. Lead CTA -->
-    <section id="contractor-cta" class="section lead-section" aria-labelledby="cta-heading">
-      <div class="container lead-inner">
-        <div class="lead-copy">
-          <h2 id="cta-heading">Compare Home Improvement Quotes in {city}</h2>
-          <p>Connect with licensed local contractors. Free estimates, no obligation.</p>
-          <ul class="lead-benefits">
-            <li>Licensed local contractors</li>
-            <li>Free estimates</li>
-            <li>No obligation</li>
-          </ul>
-        </div>
-        <form class="lead-form" action="/api/lead" method="post" novalidate>
-          <div class="form-group">
-            <label for="lead-zip">ZIP code</label>
-            <input type="text" id="lead-zip" name="zip" placeholder="{m['lead_zip']}" inputmode="numeric" pattern="[0-9]{{5}}" maxlength="5" required autocomplete="postal-code">
-          </div>
-          <div class="form-group">
-            <label for="lead-project">Project type</label>
-            <select id="lead-project" name="project_type" required>
-              <option value="roof">Roof replacement</option>
-              <option value="hvac">HVAC</option>
-              <option value="remodel">Remodel</option>
-              <option value="solar" selected>Solar</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Compare Local Quotes</button>
-          <p class="form-disclaimer">By submitting, you agree to our <a href="/privacy/">Privacy Policy</a>.</p>
-        </form>
-      </div>
-    </section>
-
-    <!-- 12. FAQ -->
+    <!-- 11. FAQ -->
 {trust_callout_html()}
     <section id="faq" class="section faq-section" aria-labelledby="faq-heading">
       <div class="container faq-container">

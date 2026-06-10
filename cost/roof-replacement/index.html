@@ -142,7 +142,6 @@
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
-      <a href="#contractor-cta" class="btn btn-header">Get Free Quotes</a>
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -153,7 +152,6 @@
         <li><a href="#calculator">Calculator</a></li>
         <li><a href="#locations">Locations</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contractor-cta" class="btn btn-primary">Get Free Quotes</a></li>
       </ul>
     </nav>
   </header>
@@ -184,7 +182,6 @@
             </ul>
             <div class="cost-hero-actions">
               <a href="#calculator" class="btn btn-primary btn-lg">Calculate Your Cost</a>
-              <a href="#contractor-cta" class="btn btn-secondary btn-lg">Compare Local Quotes</a>
             </div>
           </div>
           <aside class="cost-hero-aside" aria-label="Quick facts">
@@ -300,7 +297,6 @@
               <li><span>Tear-off</span><strong id="calc-tearoff">$1,650</strong></li>
             </ul>
             <p class="calc-result-per-sqft" id="calc-per-sqft">$7.10 per sq ft installed</p>
-            <a href="#contractor-cta" class="btn btn-primary btn-block">Compare Local Roofing Quotes</a>
             <p class="calc-disclaimer">Estimate only. Final price depends on inspection, decking condition, and contractor bids.</p>
           </aside>
         </div>
@@ -537,7 +533,7 @@
             <p class="repair-verdict"><strong>Choose replacement when:</strong> repairs exceed $3,000 or you're fixing the same area twice.</p>
           </article>
         </div>
-        <p class="repair-cta-text">Not sure? <a href="#calculator">Use our calculator</a> or <a href="#contractor-cta">get a free inspection quote</a> from a local roofer.</p>
+        <p class="repair-cta-text">Not sure? <a href="#calculator">Use our calculator</a>.</p>
       </div>
     </section>
 
@@ -580,39 +576,6 @@
         </div>
       </div>
     </section>
-
-    <!-- 10. Contractor CTA + Lead form -->
-    <section id="contractor-cta" class="section lead-section" aria-labelledby="cta-heading">
-      <div class="container lead-inner">
-        <div class="lead-copy">
-          <h2 id="cta-heading">Compare Local Roofing Quotes</h2>
-          <p>Connect with licensed, insured roofers in your area. No obligation — get 3–5 competitive bids within 48 hours.</p>
-          <ul class="lead-benefits">
-            <li>Pre-screened roofing contractors</li>
-            <li>Free on-site estimates</li>
-            <li>Compare material options side by side</li>
-          </ul>
-        </div>
-        <form class="lead-form" action="/api/lead" method="post" novalidate>
-          <div class="form-group">
-            <label for="zip">ZIP code</label>
-            <input type="text" id="zip" name="zip" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="75201" required autocomplete="postal-code">
-          </div>
-          <div class="form-group">
-            <label for="project-type">Project type</label>
-            <select id="project-type" name="project_type" required>
-              <option value="roof" selected>Roof replacement</option>
-              <option value="roof-repair">Roof repair</option>
-              <option value="hvac">HVAC installation</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Compare Local Roofing Quotes</button>
-          <p class="form-disclaimer">By submitting, you agree to our <a href="/privacy/">Privacy Policy</a>. We never sell your data.</p>
-        </form>
-      </div>
-    </section>
-
     <!-- Related -->
     <section class="section related-section" aria-labelledby="related-heading">
       <div class="container">
@@ -697,14 +660,6 @@
       </div>
     </div>
   </footer>
-
-  <aside class="sticky-cta" aria-label="Get roofing quotes">
-    <a href="#contractor-cta" class="sticky-cta-btn">
-      <span class="sticky-cta-text">Compare Local Roofing Quotes</span>
-      <span class="sticky-cta-arrow" aria-hidden="true">→</span>
-    </a>
-  </aside>
-
   <script src="/js/main.js" defer></script>
   <script src="/js/roof-calculator.js" defer></script>
 </body>

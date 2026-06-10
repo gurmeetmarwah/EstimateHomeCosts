@@ -149,7 +149,6 @@
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
-      <a href="#contractor-cta" class="btn btn-header">Get Free Quotes</a>
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -159,7 +158,6 @@
         <li><a href="/#projects">Projects</a></li>
         <li><a href="#calculator">Calculator</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contractor-cta" class="btn btn-primary">Get Free Quotes</a></li>
       </ul>
     </nav>
   </header>
@@ -190,7 +188,6 @@
             </ul>
             <div class="cost-hero-actions">
               <a href="#calculator" class="btn btn-primary btn-lg">Estimate Your Remodel</a>
-              <a href="#contractor-cta" class="btn btn-secondary btn-lg">Compare Contractor Quotes</a>
             </div>
           </div>
           <aside class="cost-hero-aside" aria-label="Quick facts">
@@ -328,7 +325,6 @@
               <li><span>Permits &amp; fees</span><strong id="calc-permits">$450</strong></li>
               <li class="calc-row-layout"><span>Layout change premium</span><strong id="calc-layout">$0</strong></li>
             </ul>
-            <a href="#contractor-cta" class="btn btn-primary btn-block">Compare Contractor Quotes</a>
             <p class="calc-disclaimer">Estimate only. Final price depends on inspection, substrate condition, and contractor bids.</p>
           </aside>
         </div>
@@ -771,39 +767,6 @@
         </div>
       </div>
     </section>
-
-    <!-- 17. Contractor CTA + related -->
-    <section id="contractor-cta" class="section lead-section" aria-labelledby="cta-heading">
-      <div class="container lead-inner">
-        <div class="lead-copy">
-          <h2 id="cta-heading">Compare Bathroom Remodel Quotes</h2>
-          <p>Connect with licensed bathroom remodelers in your area. No obligation — get 3–5 competitive bids within 48 hours.</p>
-          <ul class="lead-benefits">
-            <li>Pre-screened remodeling contractors</li>
-            <li>Free on-site estimates</li>
-            <li>Compare materials and timelines side by side</li>
-          </ul>
-        </div>
-        <form class="lead-form" action="/api/lead" method="post" novalidate>
-          <div class="form-group">
-            <label for="zip">ZIP code</label>
-            <input type="text" id="zip" name="zip" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="90210" required autocomplete="postal-code">
-          </div>
-          <div class="form-group">
-            <label for="project-type">Project type</label>
-            <select id="project-type" name="project_type" required>
-              <option value="bathroom" selected>Bathroom remodel</option>
-              <option value="kitchen">Kitchen remodel</option>
-              <option value="roof">Roof replacement</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Compare Contractor Quotes</button>
-          <p class="form-disclaimer">By submitting, you agree to our <a href="/privacy/">Privacy Policy</a>. We never sell your data.</p>
-        </form>
-      </div>
-    </section>
-
     <section class="section related-section" aria-labelledby="related-heading">
       <div class="container">
         <header class="section-header">
@@ -900,14 +863,6 @@
       </div>
     </div>
   </footer>
-
-  <aside class="sticky-cta" aria-label="Get bathroom remodel quotes">
-    <a href="#contractor-cta" class="sticky-cta-btn">
-      <span class="sticky-cta-text">Compare Contractor Quotes</span>
-      <span class="sticky-cta-arrow" aria-hidden="true">→</span>
-    </a>
-  </aside>
-
     <script src="/js/city-path.js"></script>
 <script src="/js/main.js" defer></script>
   <script src="/js/bathroom-calculator.js" defer></script>

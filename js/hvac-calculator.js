@@ -169,13 +169,4 @@
   window.addEventListener('ehc:city-scope', applyGeoLocationDefault);
   applyGeoLocationDefault();
 
-  const stickyCta = document.querySelector('.sticky-cta');
-  const ctaSection = document.getElementById('contractor-cta');
-  if (stickyCta && ctaSection) {
-    const observer = new IntersectionObserver(
-      ([entry]) => stickyCta.classList.toggle('is-visible', !entry.isIntersecting),
-      { threshold: 0, rootMargin: '0px 0px -60px 0px' }
-    );
-    observer.observe(ctaSection);
-  }
 })();

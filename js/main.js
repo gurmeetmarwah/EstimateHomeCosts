@@ -22,8 +22,6 @@
   const navToggle = document.querySelector('.nav-toggle');
   const mobileNav = document.getElementById('mobile-nav');
   const estimateBtn = document.querySelector('[data-action="estimate"]');
-  const leadForm = document.querySelector('.lead-form');
-
   let activeIndex = -1;
 
   function filterSuggestions(query) {
@@ -264,36 +262,6 @@
         return;
       }
       window.location.href = path;
-    });
-  }
-
-  if (leadForm) {
-    leadForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const zip = leadForm.querySelector('#zip')?.value?.trim();
-      const project = leadForm.querySelector('#project-type')?.value;
-      if (!zip || zip.length !== 5 || !/^\d{5}$/.test(zip)) {
-        alert('Please enter a valid 5-digit ZIP code.');
-        return;
-      }
-      if (!project) {
-        alert('Please select a project type.');
-        return;
-      }
-      const btn = leadForm.querySelector('button[type="submit"]');
-      const originalText = btn.textContent;
-      btn.disabled = true;
-      btn.textContent = 'Submitting…';
-      setTimeout(() => {
-        btn.textContent = 'Request sent!';
-        btn.style.background = 'var(--color-success)';
-        leadForm.reset();
-        setTimeout(() => {
-          btn.disabled = false;
-          btn.textContent = originalText;
-          btn.style.background = '';
-        }, 3000);
-      }, 800);
     });
   }
 

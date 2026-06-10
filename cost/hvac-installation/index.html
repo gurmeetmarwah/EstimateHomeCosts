@@ -109,7 +109,6 @@
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
-      <a href="#contractor-cta" class="btn btn-header">Get Free Quotes</a>
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -120,7 +119,6 @@
         <li><a href="#calculator">Calculator</a></li>
         <li><a href="#locations">Locations</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contractor-cta" class="btn btn-primary">Get Free Quotes</a></li>
       </ul>
     </nav>
   </header>
@@ -151,7 +149,6 @@
             </ul>
             <div class="cost-hero-actions">
               <a href="#calculator" class="btn btn-primary btn-lg">Calculate Your Cost</a>
-              <a href="#contractor-cta" class="btn btn-secondary btn-lg">Compare Local Quotes</a>
             </div>
           </div>
           <aside class="cost-hero-aside" aria-label="Quick facts">
@@ -267,7 +264,6 @@
               <li><span>Permits &amp; fees</span><strong id="calc-permits">$300</strong></li>
             </ul>
             <p class="calc-result-per-sqft" id="calc-per-sqft">$4.10–$5.30 per sq ft</p>
-            <a href="#contractor-cta" class="btn btn-primary btn-block">Compare Local HVAC Quotes</a>
             <p class="calc-disclaimer">Estimate only. Final price requires on-site load calculation and contractor bid.</p>
           </aside>
         </div>
@@ -639,38 +635,6 @@
         </nav>
       </div>
     </section>
-
-    <section id="contractor-cta" class="section lead-section" aria-labelledby="cta-heading">
-      <div class="container lead-inner">
-        <div class="lead-copy">
-          <h2 id="cta-heading">Compare Local HVAC Quotes</h2>
-          <p>Get free estimates from Connect with licensed, insured HVAC contractors in your area. No obligation.</p>
-          <ul class="lead-benefits">
-            <li>Licensed &amp; insured technicians</li>
-            <li>Compare SEER options side by side</li>
-            <li>3–5 quotes within 48 hours</li>
-          </ul>
-        </div>
-        <form class="lead-form" action="/api/lead" method="post" novalidate>
-          <div class="form-group">
-            <label for="zip">ZIP code</label>
-            <input type="text" id="zip" name="zip" placeholder="75201" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required autocomplete="postal-code">
-          </div>
-          <div class="form-group">
-            <label for="project-type">Project type</label>
-            <select id="project-type" name="project_type" required>
-              <option value="hvac" selected>HVAC installation</option>
-              <option value="hvac-repair">HVAC repair</option>
-              <option value="ductwork">Ductwork</option>
-              <option value="roof">Roof replacement</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Compare Local HVAC Quotes</button>
-          <p class="form-disclaimer">By submitting, you agree to our <a href="/privacy/">Privacy Policy</a>.</p>
-        </form>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer" role="contentinfo">
@@ -706,14 +670,6 @@
       </div>
     </div>
   </footer>
-
-  <aside class="sticky-cta" aria-label="Get HVAC quotes">
-    <a href="#contractor-cta" class="sticky-cta-btn">
-      <span class="sticky-cta-text">Compare Local HVAC Quotes</span>
-      <span class="sticky-cta-arrow" aria-hidden="true">→</span>
-    </a>
-  </aside>
-
   <script src="/js/main.js" defer></script>
   <script src="/js/hvac-calculator.js" defer></script>
 </body>

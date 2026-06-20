@@ -172,6 +172,11 @@ SKIP_HREF_PREFIXES = (
     "/terms",
     "/api/",
     "/locations/",
+    "/projects/",
+    "/states/",
+    "/methodology/",
+    "/data-sources/",
+    "/compare/",
 )
 
 SKIP_HREF_EXACT = {"/", "/#", "/#projects", "/#calculators", "/#locations", "/#comparisons"}
